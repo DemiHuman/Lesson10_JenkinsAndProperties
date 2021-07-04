@@ -36,7 +36,7 @@ public class TestRegistrationForm extends TestBase {
             currentAddress = faker.address().fullAddress(),
             state = "Haryana",
             city = "Karnal",
-            url = "https://demoqa.com/automation-practice-form";
+            testPageUrl = "https://demoqa.com/automation-practice-form";
 
     String[] hobby = new String[]{"Sports", "Reading", "Music"};
 
@@ -48,8 +48,8 @@ public class TestRegistrationForm extends TestBase {
     void testRegistrationFormWithSteps() {
 
         step("Открывает страницу с формой регистрации студента", (s) -> {
-            s.parameter("url", url);
-            open(url);
+            s.parameter("url", testPageUrl);
+            open(testPageUrl);
             $(".practice-form-wrapper").shouldHave(
                     text("Student Registration Form"));
         });
