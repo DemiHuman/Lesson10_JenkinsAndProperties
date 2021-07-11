@@ -72,7 +72,7 @@ public class Attach {
     public static URL getVideoUrl(String sessionId) {
         String url = credentials.url();
 
-        String videoUrl = String.format("https://%s/video/" + sessionId + ".mp4", url);
+        String videoUrl = String.format("http://%s/video/" + sessionId + ".mp4", url);
 
         try {
             return new URL(videoUrl);

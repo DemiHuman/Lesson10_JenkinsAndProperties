@@ -64,8 +64,8 @@ task owner_test(type: Test) {
     }
 }
 
-task reg_form(type: Test) {
+task different_tests(type: Test) {
     useJUnitPlatform {
-        includeTags 'regForm'
+        includeTags 'different_tests'
     }
 }

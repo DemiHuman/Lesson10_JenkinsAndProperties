@@ -6,6 +6,7 @@ import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import pages.RegPage;
 import utils.RandomUtils;
 
@@ -15,7 +16,7 @@ import static io.qameta.allure.Allure.step;
 
 @Feature("Issue")
 @Owner("eropkinpyu")
-@Tag("regForm")
+@Tag("different_tests")
 public class TestRegistrationForm extends TestBase {
 
 
@@ -36,7 +37,11 @@ public class TestRegistrationForm extends TestBase {
             currentAddress = faker.address().fullAddress(),
             state = "Haryana",
             city = "Karnal",
-            testPageUrl = "https://demoqa.com/automation-practice-form";
+            testPageUrl = "https://demoqa.com/automation-practice-form",
+            gitHubLoginFormUrl = "https://github.com/login",
+            loginGitHub = "login",
+            pasGitHub = "password",
+            googleUrl = "https://google.ru";
 
     String[] hobby = new String[]{"Sports", "Reading", "Music"};
 
@@ -126,6 +131,47 @@ public class TestRegistrationForm extends TestBase {
                 $("#closeLargeModal").click();
                 $(".modal-content").shouldBe(disappear);
             });
+        });
+    }
+
+    @Test
+    @Story("Testing Github Sign In")
+    @Severity(SeverityLevel.TRIVIAL)
+    @Link(value = "githubLogin", url = "https://github.com/login")
+    @DisplayName("Testing Github Sign In")
+    void testGithubSignIn() {
+
+        step("Open LoginForm", (s) -> {
+            s.parameter("LoginForm", gitHubLoginFormUrl);
+            open(gitHubLoginFormUrl);
+        });
+
+        step("Input login, password and click button \"Sign in\"", () -> {
+            $("#login_field").val(loginGitHub);
+            $("#password").val(pasGitHub);
+            $(".btn").click();
+        });
+
+        step("Check login", () -> {
+            $(".dropdown-caret", 1).click();
+            $(".user-profile-link").shouldHave(text("Signed in as"));
+        });
+    }
+
+    @Test
+    @Story("Test \"Google search\"")
+    @Severity(SeverityLevel.MINOR)
+    @Link(value = "google", url = "https://google.ru")
+    @DisplayName("Test \"Google search\"")
+    void testOpenGoogle() {
+
+        step("Open Google", (s) -> {
+            s.parameter("google.ru", googleUrl);
+            open(googleUrl);
+        });
+
+        step("Searching", () -> {
+            $(By.name("q")).val("test").pressEnter();
         });
     }
 }
