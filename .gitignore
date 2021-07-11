@@ -12,7 +12,7 @@
 
 # Properties files
 #*.properties
-config/credentials.properties
+.config/credentials.properties
 
 # Package Files #
 *.jar
