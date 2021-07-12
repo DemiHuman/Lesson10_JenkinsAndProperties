@@ -29,7 +29,7 @@ public class TestBase {
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", true);
         Configuration.browserCapabilities = capabilities;
-        Configuration.remote = String.format("http://%s:%s@%s/wd/hub/", login, password, url);
+        Configuration.remote = String.format("https://%s:%s@%s/wd/hub/", login, password, url);
     }
 
     @AfterEach
